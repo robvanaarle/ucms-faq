@@ -1,0 +1,13 @@
+<?php foreach ($this->items as $item): ?>
+<?php if ($this->localeCount > 1): ?>
+<a href="<?php echo $this->url(array('action' => 'read', 'id' => $item['id']))?>"><?php echo $this->escape($item['label']) ?></a><br />
+<?php else: ?>
+<a href="<?php echo $this->url(array('action' => 'read', 'controller' => 'question', 'item_id' => $item['id']))?>"><?php echo $this->escape($item['label']) ?></a><br />
+<?php endif ?>
+<?php endforeach ?>
+
+<?php if ($this->localeCount > 1 && $this->authorizer()->isAllowed('item.create')): ?>
+<br /><a href="<?php echo $this->url(array('action' => 'create'))?>">create item</a>
+<?php elseif ($this->localeCount <= 1 && $this->authorizer()->isAllowed('combined.create')): ?>
+<br /><a href="<?php echo $this->url(array('action' => 'create', 'controller' => 'combined'))?>">create combined</a>
+<?php endif ?>

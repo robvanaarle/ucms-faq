@@ -1,0 +1,5 @@
+<ul>
+<?php foreach ($this->questions as $question): ?>
+  <li><a href="<?php echo $this->url(array('action' => 'read', 'item_id' => $question['item_id']))?>"><?php echo $this->escape($question['question']) ?></a></li>
+<?php endforeach; ?>
+</ul>

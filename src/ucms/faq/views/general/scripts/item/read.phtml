@@ -1,0 +1,27 @@
+<h2><?php echo $this->escape($this->item['label'])?></h2>
+
+<?php if ($this->authorizer()->isAllowed('item.update')): ?>
+<br /><a href="<?php echo $this->url(array('action' => 'update', 'id' => $this->item['id']))?>">update item</a>
+<?php endif ?>
+
+<?php if ($this->authorizer()->isAllowed('submit.delete')): ?>
+<br /><a href="<?php echo $this->url(array('action' => 'delete', 'id' => $this->item['id']))?>">delete item</a>
+<?php endif ?>
+
+<br /><br />
+Questions<br />
+<table border="1">
+  <tr>
+    <td>Locale</td>
+    <td>Question</td>
+  </tr>
+	<?php foreach ($this->item['questions'] as $question): ?>
+	 <tr>
+     <td><?php echo $question['locale']?></td>
+     <td><a href="<?php echo $this->url(array('controller' => 'question', 'action' => 'read', 'item_id' => $question['item_id'], 'locale' => $question['locale']))?>"><?php echo $this->escape($question['question'])?></a></td>
+   </tr>
+	<?php endforeach ?>
+</table>
+<?php if ($this->authorizer()->isAllowed('question.create')): ?>
+  <a href="<?php echo $this->url(array('controller' => 'question', 'action' => 'create', 'item_id' => $this->item['id']))?>">create question</a>
+<?php endif ?>

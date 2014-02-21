@@ -1,0 +1,6 @@
+<h3>Faq</h3>
+<?php echo $this->partial('question/_questions.phtml', array('questions' => $this->questions)) ?>
+
+<?php if ($this->authorizer()->isAllowed('item.index')): ?>
+<br /><a href="<?php echo $this->url(array('controller' => 'item', 'action' => 'index'))?>">view items</a>
+<?php endif ?>

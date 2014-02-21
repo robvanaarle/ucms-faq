@@ -1,0 +1,47 @@
+<?php if ($this->form === null): ?>
+There are no available locales in this item to create a new question for.
+<?php else: ?>
+<form method="post" action="<?php echo $this->url(array('action' => $this->action))?>">
+  
+  <input type="hidden" name="item_id" value="<?php echo $this->item_id ?>" />
+  <?php if ($this->action == 'update'): ?>
+  <input type="hidden" name="locale" value="<?php echo $this->locale ?>" />
+  <?php endif ?>
+  
+  <dl>
+    <dt><label for="locale">Locale</label></dt>
+    <dd>
+      <?php echo $this->error($this->form, 'locale')?>
+      <?php echo $this->widget('Select', array(
+        'id' => 'locale',
+        'name' => 'form[locale]',
+        'value' => $this->form['locale'],
+        'values' => $this->form->getConfig('availableLocales'),
+        'texts' => $this->form->getConfig('availableLocales')
+      )) ?>
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt><label for="question">Question</label></dt>
+    <dd>
+      <?php echo $this->error($this->form, 'question')?>
+      <input type="text" name="form[question]" id="question" value="<?php echo $this->escape($this->form['question'])?>" />
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt><label for="answer">Answer</label></dt>
+    <dd>
+      <?php echo $this->error($this->form, 'answer')?>
+      <textarea name="form[answer]" id="answer"><?php echo $this->escape($this->form['answer'])?></textarea>
+    </dd>
+  </dl>
+  
+  <dl>
+    <dd>
+      <input type="submit" value="<?php echo $this->action?>" />
+    </dd>
+  </dl>
+</form>
+<?php endif ?>

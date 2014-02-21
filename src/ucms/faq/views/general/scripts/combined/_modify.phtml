@@ -1,0 +1,28 @@
+<form method="post" action="<?php echo $this->url(array('action' => $this->action))?>">
+  
+  <?php if ($this->action == 'update'): ?>
+  <input type="hidden" name="item_id" value="<?php echo $this->item_id ?>" />
+  <?php endif ?>
+  
+  <dl>
+    <dt><label for="question">Question</label></dt>
+    <dd>
+      <?php echo $this->error($this->form, 'question')?>
+      <input type="text" name="form[question]" id="question" value="<?php echo $this->escape($this->form['question'])?>" />
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt><label for="answer">Answer</label></dt>
+    <dd>
+      <?php echo $this->error($this->form, 'answer')?>
+      <textarea name="form[answer]" id="answer"><?php echo $this->escape($this->form['answer'])?></textarea>
+    </dd>
+  </dl>
+  
+  <dl>
+    <dd>
+      <input type="submit" value="<?php echo $this->action?>" />
+    </dd>
+  </dl>
+</form>
